@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自キャラ管理ツール</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <button id="helpBtn" type="button">使い方</button>
+        <div class="character-switcher">
+          <label for="characterSelect">キャラ</label>
+          <select id="characterSelect"></select>
+          <button id="addCharacterBtn" type="button">新規</button>
+          <button id="deleteCharacterBtn" class="danger" type="button">削除</button>
+        </div>
+        <div class="theme-switcher" aria-label="表示モード">
+          <button id="exportBtn" class="icon-text-button" type="button">
+            <span class="save-icon" aria-hidden="true"></span>
+            書き出し
+          </button>
+          <label class="import-button">
+            読み込み
+            <input id="importInput" type="file" accept="application/json,.json" />
+          </label>
+          <button id="lightThemeBtn" type="button" aria-pressed="true">ライト</button>
+          <button id="darkThemeBtn" type="button" aria-pressed="false">ダーク</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="portrait-panel" aria-label="立ち絵">
+          <div class="portrait-frame">
+            <img id="portraitPreview" alt="キャラクター立ち絵" />
+            <div class="portrait-empty">
+              <span>立ち絵</span>
+            </div>
+          </div>
+          <label class="image-picker">
+            <input id="portraitInput" type="file" accept="image/*" />
+            画像の変更・追加
+          </label>
+        </section>
+
+        <section class="profile-panel" aria-label="プロフィール">
+          <section class="basic-card" aria-label="基本情報">
+            <div class="section-title">
+              <div class="title-tools">
+                <h1>基本情報</h1>
+                <label class="color-picker" title="イメージカラー">
+                  <span>色</span>
+                  <input id="imageColorInput" type="color" aria-label="イメージカラー" />
+                </label>
+              </div>
+              <button id="addBasicFieldBtn" class="square-button" type="button" aria-label="基本情報を追加">+</button>
+            </div>
+            <div id="basicGrid" class="basic-grid"></div>
+          </section>
+
+          <section class="extra-card" aria-label="追加情報">
+            <div id="fieldsList" class="fields-list"></div>
+            <button id="openFieldModalBtn" class="floating-add-button" type="button" aria-label="追加情報を追加">+</button>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="fieldModal" class="modal">
+      <form id="fieldForm" method="dialog">
+        <div class="modal-head">
+          <h2>追加情報</h2>
+          <button id="closeFieldModalBtn" class="icon-button" type="button" aria-label="閉じる">×</button>
+        </div>
+
+        <div class="question-box">
+          <p id="randomQuestion">項目のヒントが欲しい時だけ使えます。</p>
+          <button id="randomQuestionBtn" type="button">ランダム質問</button>
+        </div>
+
+        <div class="modal-field-stack">
+          <div class="modal-input-line group-input-line">
+            <span>大項目</span>
+            <input id="fieldGroup" type="text" list="groupOptions" placeholder="任意：例：過去" />
+            <button id="randomGroupBtn" class="mini-button" type="button" aria-label="ランダム大項目">🎲</button>
+            <button id="groupInfoBtn" class="mini-button" type="button" aria-label="大項目サイコロの説明">i</button>
+          </div>
+          <datalist id="groupOptions"></datalist>
+          <div id="modalItems" class="modal-items">
+            <div class="modal-item-row">
+              <div class="modal-input-line">
+                <span>小項目</span>
+                <input class="field-category-input" type="text" placeholder="例：幼少期" required />
+                <textarea class="field-value-input auto-grow" rows="1" placeholder="内容を書く"></textarea>
+                <button class="mini-button random-category-btn" type="button" aria-label="ランダム小項目">🎲</button>
+                <button id="categoryInfoBtn" class="mini-button" type="button" aria-label="小項目サイコロの説明">i</button>
+              </div>
+            </div>
+          </div>
+          <button id="addModalItemBtn" class="add-subitem-button" type="button">＋ 小項目を追加</button>
+        </div>
+
+        <div class="modal-actions">
+          <button id="cancelFieldBtn" type="button">キャンセル</button>
+          <button class="primary" type="submit">追加</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="helpModal" class="modal help-modal">
+      <div class="modal-head">
+        <h2>使い方</h2>
+        <button id="closeHelpBtn" class="icon-button" type="button" aria-label="閉じる">×</button>
+      </div>
+      <div class="help-content">
+        <p>キャラを選んで、立ち絵・基本情報・追加情報を編集します。入力内容はブラウザ内に自動保存されます。</p>
+        <p>基本情報の色ボタンでイメージカラーを設定できます。大項目の見出しにも同じ色が反映されます。</p>
+        <p>追加情報の＋から、大項目と小項目を追加できます。大項目なしなら小項目だけの情報として保存されます。</p>
+        <p>サイコロは項目案や質問をランダム入力します。iボタンでそれぞれの説明を確認できます。</p>
+        <p>書き出しでJSONバックアップを保存し、読み込みで復元できます。</p>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
