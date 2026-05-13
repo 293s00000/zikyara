@@ -534,7 +534,10 @@ p {
   display: grid;
   place-items: center;
   width: 34px;
+  min-width: 34px;
+  max-width: 34px;
   min-height: 34px;
+  height: 34px;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -693,9 +696,14 @@ p {
 
 .modal-input-line {
   display: grid;
-  grid-template-columns: auto minmax(120px, 0.3fr) minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(120px, 0.3fr) minmax(0, 1fr) 118px;
   gap: 8px;
   align-items: center;
+}
+
+.modal-input-line input,
+.modal-input-line textarea {
+  min-width: 0;
 }
 
 .group-input-line {
@@ -718,16 +726,21 @@ p {
 
 .mini-button {
   width: 34px;
+  min-width: 34px;
+  max-width: 34px;
   min-height: 34px;
+  height: 34px;
   padding: 0;
   font-weight: 700;
 }
 
 .modal-row-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
   align-items: center;
   gap: 8px;
-  width: max-content;
+  width: 118px;
+  min-width: 118px;
 }
 
 .add-subitem-button {
