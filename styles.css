@@ -710,7 +710,7 @@ p {
   grid-template-columns: auto minmax(0, 1fr) 34px 34px;
 }
 
-.modal-input-line span {
+.modal-input-line > span {
   display: grid;
   place-items: center;
   min-width: 72px;
