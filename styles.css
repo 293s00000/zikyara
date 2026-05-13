@@ -693,7 +693,7 @@ p {
 
 .modal-input-line {
   display: grid;
-  grid-template-columns: auto minmax(120px, 0.3fr) minmax(0, 1fr) auto 34px 34px;
+  grid-template-columns: auto minmax(120px, 0.3fr) minmax(0, 1fr) auto;
   gap: 8px;
   align-items: center;
 }
@@ -721,6 +721,13 @@ p {
   min-height: 34px;
   padding: 0;
   font-weight: 700;
+}
+
+.modal-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
 }
 
 .add-subitem-button {

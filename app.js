@@ -586,7 +586,11 @@ function createModalItemRow() {
   imageInput.addEventListener("change", () => previewModalImage(row));
   imageControl.append(imageInput);
 
-  line.append(label, category, value, imageControl, randomButton, removeButton);
+  const actions = document.createElement("div");
+  actions.className = "modal-row-actions";
+
+  actions.append(imageControl, randomButton, removeButton);
+  line.append(label, category, value, actions);
   row.append(line);
   return row;
 }
